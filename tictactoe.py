@@ -11,16 +11,16 @@ def clear_board():
 
 def input_move(player):
     while True:
-        invalidInput = "\n Select valid position."; indexOffset = [0, 3, 6]
+        invalid_input = "\n Select valid position."; indexOffset = [0, 3, 6]
         try:
             inputPos = int(input(f"\n Player: {player}\n\n 1-9: ")) - 1
         except ValueError:
-            print(invalidInput); continue
+            print(invalid_input); continue
         for row, num in zip([row1, row2, row3], indexOffset):
             if inputPos <= num + 2:
                 if row[inputPos-(num)] == " ":
                     row[inputPos-(num)] = player; return
-                print(invalidInput); break
+                print(invalid_input); break
         print("\nPosition has to be less then 10.")
         
 def print_board():
