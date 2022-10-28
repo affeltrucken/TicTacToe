@@ -11,7 +11,8 @@ def clear_board():
 
 def input_move(player):
     while True:
-        invalid_input = "\n Select valid position."; indexOffset = [0, 3, 6]
+        invalid_input = "\n Select valid position."
+        indexOffset = [0, 3, 6]
         try:
             inputPos = int(input(f"\n Player: {player}\n\n 1-9: ")) - 1
         except ValueError:
@@ -19,38 +20,51 @@ def input_move(player):
         for row, num in zip([row1, row2, row3], indexOffset):
             if inputPos <= num + 2:
                 if row[inputPos-(num)] == " ":
-                    row[inputPos-(num)] = player; return
-                print(invalid_input); break
+                    row[inputPos-(num)] = player
+                    return
+                print(invalid_input)
+                break
         print("\nPosition has to be less then 10.")
         
 def print_board():
     clear_console()
-    line = " ----------"; print("\n"+line)
+    line = " ----------"
+    print("\n"+line)
     for row in (row1, row2, row3):
-        print(f" |{row[0]} |{row[1]} |{row[2]} |"); print(line)
+        print(f" |{row[0]} |{row[1]} |{row[2]} |")
+        print(line)
 
 def check_board_row():
     for row in (row1, row2, row3):
         if all(tile == row[0] for tile in row) and row[0] != " ":
-            print_board(); print(f"\n {row[0]} won!\n"); done()
+            print_board()
+            print(f"\n {row[0]} won!\n")
+            done()
 
 def check_board_col():
     atPos = 0
     for i in range(1, 3):
         if row1[atPos] == row2[atPos] == row3[atPos] == row1[atPos] != " ":
-            print_board(); print(f"\n {row1[atPos]} won!\n"); done()
+            print_board()
+            print(f"\n {row1[atPos]} won!\n")
+            done()
         atPos += 1
 
 def check_board_diag():
     if row1[0] == row2[1] == row3[2] and row1[0] != " ":
-        print_board(); print(f"\n {row1[0]} won!\n"); done()
+        print_board()
+        print(f"\n {row1[0]} won!\n")
+        done()
     if row1[2] == row2[1] == row3[0] and row1[2] != " ":
-        print_board(); print(f"\n {row1[2]} won!\n"); done()
+        print_board()
+        print(f"\n {row1[2]} won!\n")
+        done()
         
 def check_draw():
     for tile in (row1 + row2 + row3):
         if tile == " ": return
-    print(" Draw!\n"); done()
+    print(" Draw!\n")
+    done()
 
 def check_board():
     check_board_row(); check_board_col(); check_board_diag(); check_draw()
